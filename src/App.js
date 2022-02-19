@@ -1,61 +1,52 @@
-// CityView Project using React (useeffect, usestate)
-
+import logo from './logo.svg';
+import './App.css';
+import {SearchBar} from "./SearchBar";
 import {Display} from "./Display";
 import {useState} from "react";
-import {SearchBar} from "./SearchBar";
-import './App.css';
 import {SearchBarCityView} from "./SearchBarCityView";
 import {DisplayCityView} from "./DisplayCityView";
 
 function App() {
-    const [name, setName] = useState(null)
+    // create a state to store the selected index from child
+    const [selectedIndex, setSelectedIndex] = useState(0)
 
-    //create a state to store the results by child.
+    const updateIndex = value => setSelectedIndex(value)
 
+    //create a state to store the results fetched by child
     const [imgList, setImgList] = useState([])
-    const updateImgList = (value) => {
-        setImgList(value)
-    }
-
-    //create a function to accept the value from child and set state(setName)
-    const updateName = (value) => {
-        // console.log(value)
-        setName(value)
-    }
-
-    const conversion = () => {
-        setName(name => name.toUpperCase())
-    }
+    const updateImgList = value => setImgList(value)
 
     return (
         <div className="App">
-            <h1>Parent:</h1>
-            <p>{name}</p>
-            {/*<p>{JSON.stringify(imgList)}</p>*/}
+            {imgList.length !== 0 && <h1>{imgList[selectedIndex].des}</h1>}
+            {/*<p>{JSON.stringify(imgList)}</p >*/}
             {/*<SearchBar updateName = {updateName}/>*/}
-            <SearchBarCityView updateName = {updateName}
-                               updateImgList = {updateImgList}
+            <SearchBarCityView
+                updateImgList={updateImgList}
             />
             <hr/>
             <hr/>
-            {/*<Display name = {name}*/}
-            {/*         //传进去*/}
-            {/*         conversion = {conversion}*/}
+            {/*<Display*/}
+            {/*    name = {name}*/}
+            {/*    conversion = {conversion}*/}
             {/*/>*/}
-            <DisplayCityView name = {name}
-                     //传进去
-                     conversion = {conversion}
+            <DisplayCityView
+                imgList = {imgList}
+                updateIndex = {updateIndex}
             />
-            {/*if array length is not zero get the second*/}
-            {imgList.length !==0 && <img
-                style={{height:'100vh',
-                        width: '100vw',
-                        position: 'absolute',
-                        zIndex: -1
+            {imgList.length !== 0 && <img
+                style={{
+                    height: '100vh',
+                    width: '100vw',
+                    position: 'absolute',
+                    zIndex: -1,
                 }}
-                src={imgList[0].urls.regular} alt=""/>}
-            {/*if imgList is an object, use !!imgList instead of imgList.length !==0 to ensure the object is not empty. */}
+
+                src={imgList[selectedIndex].regular} alt={imgList[selectedIndex].des}/>}
+            {/*if imgList is an object, use !!imgList instead of imgList.length !== 0 to make sure the object is not empty*/}
+
         </div>
     );
 }
+
 export default App;
