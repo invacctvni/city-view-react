@@ -1,9 +1,16 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {Loading} from "./Loading";
 const unsplashKey = 'RaSnBiqog6SVIdgaUHc2Ls-8McGCIPt7S3lsW7M3cgU'
 const unsplashUrl = 'https://api.unsplash.com/search/photos'
 
 export const SearchBarCityView = ({updateImgList}) => {
+    //define isLoading (true/false) state to control if show <Loading/>
+    const [isLoading, setIsLoading] = useState(false)
+
+
+
+
     //1 when the component did mount, cl search city (once), dependency should be empty.
     //2 when the state (inputName) is changed, call searchCity.
     const [inputName, setInputName] = useState('canadian')
@@ -30,8 +37,9 @@ export const SearchBarCityView = ({updateImgList}) => {
         //axios
         // https://api.unsplash.com/search/photos
         // client_id=${access_key}
-// &query=${searchCity}
-// &orientation=landscape`
+        // &query=${searchCity}
+        // &orientation=landscape`
+        setIsLoading(true)
         axios.get(unsplashUrl, {
             params:{
                 query: inputCity,
@@ -61,8 +69,11 @@ export const SearchBarCityView = ({updateImgList}) => {
             }))
                 console.log(newRes)
                 updateImgList(newRes)
+                setIsLoading(false)
             }
-        ). catch(err => console.log(err))
+        ). catch(err => {
+            setIsLoading(false)
+            console.log(err)})
     }
 
     return (
@@ -79,6 +90,7 @@ export const SearchBarCityView = ({updateImgList}) => {
                 type="text"/>
             {/*<h3>Input child</h3>*/}
             <h3>{name}</h3>
+            {isLoading && <Loading />}
             {/*<p>{name}</p>*/}
         </div>
     )
