@@ -9,9 +9,7 @@ import {DisplayCityView} from "./DisplayCityView";
 
 function App() {
     const [name, setName] = useState(null)
-
     //create a state to store the results by child.
-
     const [imgList, setImgList] = useState([])
     const updateImgList = (value) => {
         setImgList(value)
