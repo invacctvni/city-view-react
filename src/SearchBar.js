@@ -1,5 +1,5 @@
 import {useState} from "react";
-
+//一定要export
 export const SearchBar = ({updateName}) => {
     // 2015 new feature
     // let myObj = {
@@ -12,6 +12,7 @@ export const SearchBar = ({updateName}) => {
     const [name,setName] = useState(null)
 
     return (
+        // inline style is an object
         <div style={{border: '2px solid blue', width:'400px', height: '200px'}}>
             <label htmlFor="">Please input name: </label>
             <input
