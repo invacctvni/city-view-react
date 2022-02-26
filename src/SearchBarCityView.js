@@ -56,15 +56,12 @@ export const SearchBarCityView = ({updateName, updateImgList}) => {
     }
 
 
-
-
-
     return (
         <div style={{border: '2px solid blue', width:'400px', height: '200px'}}>
             <label htmlFor="">Please input name: </label>
             <input
                 onChange={evt => {
-                    console.log(evt.target.value)
+                    // console.log(evt.target.value)
                     updateName(evt.target.value)
                     setName(evt.target.value)
                 }}

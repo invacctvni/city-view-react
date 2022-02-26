@@ -17,8 +17,9 @@ export const SearchBar = ({updateName}) => {
             <label htmlFor="">Please input name: </label>
             <input
                 onChange={evt => {
-                    console.log(evt.target.value)
+                    // console.log(evt.target.value)
                     updateName(evt.target.value)
+                    //更新
                     setName(evt.target.value)
                 }}
                 type="text"/>

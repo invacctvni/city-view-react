@@ -8,6 +8,7 @@ import {SearchBarCityView} from "./SearchBarCityView";
 import {DisplayCityView} from "./DisplayCityView";
 
 function App() {
+    //how to pass from child to parent: 1. need to set a hook
     const [name, setName] = useState(null)
     //create a state to store the results by child.
     const [imgList, setImgList] = useState([])
@@ -15,7 +16,7 @@ function App() {
         setImgList(value)
     }
 
-    //create a function to accept the value from child and set state(setName)
+    //2. Next setName: create a function to accept the value from child and set state(setName)
     const updateName = (value) => {
         // console.log(value)
         setName(value)
@@ -41,7 +42,7 @@ function App() {
             {/*         conversion = {conversion}*/}
             {/*/>*/}
             <DisplayCityView name = {name}
-                     //传进去
+                     //function 传进去 让他可以调用这个function
                      conversion = {conversion}
             />
             {/*if array length is not zero get the second*/}
