@@ -8,7 +8,6 @@ import {SearchBarCityView} from "./SearchBarCityView";
 import {DisplayCityView} from "./DisplayCityView";
 
 function App() {
-    const [name, setName] = useState(null)
 
     //create a state to store the results by child.
 
@@ -17,23 +16,12 @@ function App() {
         setImgList(value)
     }
 
-    //create a function to accept the value from child and set state(setName)
-    const updateName = (value) => {
-        // console.log(value)
-        setName(value)
-    }
-
-    const conversion = () => {
-        setName(name => name.toUpperCase())
-    }
-
     return (
         <div className="App">
             <h1>Parent:</h1>
-            <p>{name}</p>
             {/*<p>{JSON.stringify(imgList)}</p>*/}
             {/*<SearchBar updateName = {updateName}/>*/}
-            <SearchBarCityView updateName = {updateName}
+            <SearchBarCityView
                                updateImgList = {updateImgList}
             />
             <hr/>
@@ -42,10 +30,7 @@ function App() {
             {/*         //传进去*/}
             {/*         conversion = {conversion}*/}
             {/*/>*/}
-            <DisplayCityView name = {name}
-                     //传进去
-                     conversion = {conversion}
-            />
+            <DisplayCityView/>
             {/*if array length is not zero get the second*/}
             {imgList.length !==0 && <img
                 style={{height:'100vh',

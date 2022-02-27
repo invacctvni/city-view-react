@@ -3,7 +3,7 @@ import axios from "axios";
 const unsplashKey = 'RaSnBiqog6SVIdgaUHc2Ls-8McGCIPt7S3lsW7M3cgU'
 const unsplashUrl = 'https://api.unsplash.com/search/photos'
 
-export const SearchBarCityView = ({updateName, updateImgList}) => {
+export const SearchBarCityView = ({updateImgList}) => {
     // 2015 new feature
     // let myObj = {
     //     name: 'JT',
@@ -55,23 +55,17 @@ export const SearchBarCityView = ({updateName, updateImgList}) => {
         ). catch(err => console.log(err))
     }
 
-
-
-
-
     return (
         <div style={{border: '2px solid blue', width:'400px', height: '200px'}}>
             <label htmlFor="">Please input name: </label>
             <input
                 onChange={evt => {
                     console.log(evt.target.value)
-                    updateName(evt.target.value)
                     setName(evt.target.value)
                 }}
                 onKeyDown={keyDownHandler}
                 type="text"/>
-            <h3>Input child</h3>
-            <p>{name}</p>
+            <h3>{name}</h3>
         </div>
     )
 }
