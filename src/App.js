@@ -12,9 +12,7 @@ function App() {
     const [name, setName] = useState(null)
     //create a state to store the results by child.
     const [imgList, setImgList] = useState([])
-    const updateImgList = (value) => {
-        setImgList(value)
-    }
+    const updateImgList = (value) => setImgList(value)
 
     //2. Next setName: create a function to accept the value from child and set state(setName)
     const updateName = (value) => {
@@ -46,10 +44,14 @@ function App() {
                      conversion = {conversion}
             />
             {/*if array length is not zero get the second*/}
+            {/*{} means using js*/}
+            {/*判断ARRAY有的时候，用length是否等于0，判断object的时候，用！！imgList instead*/}
             {imgList.length !==0 && <img
                 style={{height:'100vh',
                         width: '100vw',
+                    //default position is static, need to change to absolute.
                         position: 'absolute',
+                    //让他落在上面，覆盖所有
                         zIndex: -1
                 }}
                 src={imgList[0].urls.regular} alt=""/>}
