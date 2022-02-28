@@ -1,0 +1,26 @@
+//npm i sass
+// invented earlier than sass
+// sass is a css pre process file.
+.displayContainer {
+  width: 80vw;
+  position: fixed;
+  bottom: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  //直接叫元素，不用.
+  img{
+    width: 100px;
+    height: 100px;
+    border: white 2px solid;
+    border-radius: 50%;
+    //linear change, apply to all
+    transition: 0.2s linear all;
+    //& means ancestor - img itself
+    &:hover {
+      transform: scale(1.2) translateY(-10px);
+      border: red 2px solid;
+    }
+  }
+  //absolute relative to closest sister vs fix relative to viewport
+}

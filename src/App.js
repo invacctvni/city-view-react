@@ -8,21 +8,24 @@ import {SearchBarCityView} from "./SearchBarCityView";
 import {DisplayCityView} from "./DisplayCityView";
 
 function App() {
+    //create a state to store the selected index from child
+    const [selectedIndex, setSelectedIndex] = useState(0)
+    // 传到孩子里，孩子一点，就更新
+    const updateIndex = value => setSelectedIndex(value)
 
     //create a state to store the results by child.
-
     const [imgList, setImgList] = useState([])
     const updateImgList = (value) => {
         setImgList(value)
     }
-
     return (
         <div className="App">
-            <h1>Parent:</h1>
+            {imgList.length !== 0 && <h1>{imgList[selectedIndex].des}</h1>}
             {/*<p>{JSON.stringify(imgList)}</p>*/}
             {/*<SearchBar updateName = {updateName}/>*/}
             <SearchBarCityView
                                updateImgList = {updateImgList}
+                updateIndex = {updateIndex}
             />
             <hr/>
             <hr/>
@@ -30,7 +33,10 @@ function App() {
             {/*         //传进去*/}
             {/*         conversion = {conversion}*/}
             {/*/>*/}
-            <DisplayCityView/>
+            <DisplayCityView
+                imgList = {imgList}
+                updateIndex = {updateIndex}
+            />
             {/*if array length is not zero get the second*/}
             {imgList.length !==0 && <img
                 style={{height:'100vh',
@@ -38,7 +44,7 @@ function App() {
                         position: 'absolute',
                         zIndex: -1
                 }}
-                src={imgList[0].urls.regular} alt=""/>}
+                src={imgList[selectedIndex].regular} alt={imgList[selectedIndex].des}/>}
             {/*if imgList is an object, use !!imgList instead of imgList.length !==0 to ensure the object is not empty. */}
         </div>
     );
